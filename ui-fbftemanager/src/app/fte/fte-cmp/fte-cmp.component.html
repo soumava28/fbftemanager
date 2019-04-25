@@ -18,13 +18,20 @@
                     <option value="admin">Admin</option>
                     <option value="co">CO</option>
                 </select>
-                <mat-form-field>
+                 <mat-form-field>
                     <input matInput [matDatepicker]="picker" placeholder="Week Start Date" id="weekStDt" name="weekStDt"
                         [(ngModel)]="fterecordmodelArr[0].weekStDt" class="form-control">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-                <br />
+                <br/> 
+                   <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Week End Date" id="weekEdDt" name="weekEdDt"
+                        [(ngModel)]="fterecordmodelArr[0].weekEnDt" class="form-control">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <br/>
                 <table>
                     <tr>
                         <td>

@@ -1,5 +1,6 @@
 package com.fterecorder.app.service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class FTERecorderServiceImpl implements FTERecorderService {
 
 		records.forEach(r -> {
 			r.setId(seq.getNextFteRecSequenceId(FTEREC_SEQ_KEY));
-			r.setCreateDt(new Date());
+			r.setCreateDt(LocalDate.now());
 		});
 
 		try {

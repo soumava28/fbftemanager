@@ -12,6 +12,7 @@ export class FteRecordClientModel {
         public edtDetailsCount: number;
         public diQueriesCount: number;
         public weekStDt: Date;
+        public weekEnDt: Date;
         public note: string;
    /*  constructor(
         public track: string,

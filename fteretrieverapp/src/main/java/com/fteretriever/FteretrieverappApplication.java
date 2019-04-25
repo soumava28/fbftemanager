@@ -7,8 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableEurekaClient
-
-@ComponentScan("com.fteretriever.controller")
 public class FteretrieverappApplication {
 
 	

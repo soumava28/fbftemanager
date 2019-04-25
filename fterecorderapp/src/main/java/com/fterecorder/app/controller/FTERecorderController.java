@@ -18,11 +18,7 @@ import com.fterecorder.app.service.FTERecorderService;
 
 @RestController
 @RequestMapping(path="/fterecorder")
-<<<<<<< 4baa5408135c2cee8b2e74d9197438c5c32075d3
-@CrossOrigin(origins="http://localhost:4200",maxAge=3600)
-=======
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
->>>>>>> FBFTE_Soumav : Layout changes for UI - Feedback retriever
 public class FTERecorderController {
 
 	@Autowired

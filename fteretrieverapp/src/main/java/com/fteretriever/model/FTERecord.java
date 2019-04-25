@@ -1,12 +1,17 @@
 package com.fteretriever.model;
 
 
+import java.time.LocalDate;
+
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 @Document(collection = "FTERecord")
 public class FTERecord {
@@ -27,11 +32,13 @@ public class FTERecord {
 	int excessFteCount;
 	int edtDetailsCount;
 	int diQueriesCount;
-	Date createDt;
-	Date weekStDt;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	LocalDate createDt;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	LocalDate weekStDt;
 	String note;
 	Employee employee;
-	
+
 	public FTERecord() {
 	}
 
@@ -39,7 +46,7 @@ public class FTERecord {
 	public FTERecord(long id, String track, int ftesPerRosterCount, int defectCount, int widgetCount,
 			int ftesLoanedCount, int ptoCount, int ftesBorrowedCount, int ftesForPerformanceCount,
 			int ftesForExtendedScenarioExecCount, int excessFteCount, int edtDetailsCount, int diQueriesCount,
-			Date createDt, Date weekStDt, String note) {
+			LocalDate createDt, LocalDate weekStDt, String note) {
 
 		super();
 		this.id = id;
@@ -164,19 +171,19 @@ public class FTERecord {
 		this.diQueriesCount = diQueriesCount;
 	}
 
-	public Date getCreateDt() {
+	public LocalDate getCreateDt() {
 		return createDt;
 	}
 
-	public void setCreateDt(Date createDt) {
+	public void setCreateDt(LocalDate createDt) {
 		this.createDt = createDt;
 	}
 
-	public Date getWeekStDt() {
+	public LocalDate getWeekStDt() {
 		return weekStDt;
 	}
 
-	public void setWeekStDt(Date weekStDt) {
+	public void setWeekStDt(LocalDate weekStDt) {
 		this.weekStDt = weekStDt;
 	}
 
@@ -195,5 +202,5 @@ public class FTERecord {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
+
 }

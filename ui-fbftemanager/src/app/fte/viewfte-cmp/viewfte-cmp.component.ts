@@ -17,6 +17,7 @@ export class ViewfteCmpComponent implements OnInit {
 
     }
     searchData() {
+        this.fteDataAfterSearch = [];
         console.log(this.fterecordmodel);
         this.fteDataAfterSearch = this.fteRetrieveServiece.getDataInArrayFormat(this.fterecordmodel);
     }
