@@ -22,7 +22,7 @@ import com.fteretriever.service.FteRetrieverService;
 
 @RestController
 @RequestMapping("/fetchftedata")
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class FteRetrieverController {
 
 	private static final Logger LOG = Logger.getLogger(FteRetrieverController.class.getName());

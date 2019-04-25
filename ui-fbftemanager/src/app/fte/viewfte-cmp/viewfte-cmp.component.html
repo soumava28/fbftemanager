@@ -1,7 +1,3 @@
-
-
-
-
 <head>
     <title>viewfeedback</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
@@ -10,45 +6,54 @@
 <div class="ftecontainer">
     <form class="form" #userForm="ngForm" role="insert" (ngSubmit)="searchData()">
 
-             <label>Choose Track</label>
-                <select id="track" name="track" [(ngModel)]="fterecordmodel.track" class="form-control">
-                    <option value="bm">Benefit Managment</option>
-                    <option value="ardc">ARDC</option>
-                    <option value="admin">Admin</option>
-                    <option value="co">CO</option>
-                </select>
-   <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Week Start Date" id="weekStDt" name="weekStDt"
-                        [(ngModel)]="fterecordmodel.weekStDt" class="form-control">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
+        <label>Choose Track</label>
+        <select id="track" name="track" [(ngModel)]="fterecordmodel.track" class="form-control">
+            <option value="BM">Benefit Managment</option>
+            <option value="ARDC">ARDC</option>
+            <option value="ADMIN">Admin</option>
+            <option value="CO">Correspondence</option>
+            <option value="IN">Interfaces</option>
+            <option value="E&T">Employment & Training</option>
+            <option value="Reports">Reports</option>
+            <option value="EA">EA</option>
+        </select>
+        <mat-form-field>
+            <input matInput [matDatepicker]="startpicker" placeholder="Start Date" id="weekStDt" name="weekStDt"
+                [(ngModel)]="fterecordmodel.weekStDt" class="form-control">
+            <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+            <mat-datepicker #startpicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="endpicker" placeholder="End Date" id="weekEdDt" name="weekEdDt"
+                [(ngModel)]="fterecordmodel.weekStDt" class="form-control">
+            <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+            <mat-datepicker #endpicker></mat-datepicker>
+        </mat-form-field>
 
-                  <div class="send-button">
-                    <!-- <input type="submit" value="Submit"> -->
-                    <button type="submit">Search</button>
-                </div>
-</form>
+        <div class="send-button">
+            <!-- <input type="submit" value="Submit"> -->
+            <button type="submit">Search</button>
+        </div>
+    </form>
 </div>
 <table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
-            <th>FTE ID</th>
             <th>Track</th>
-            <th>Employee ID</th>
-            <th>Week Start Date</th>
-            <th>FTEs Per Roster</th>
-            <th>Defects</th>
-            <th>Widgets</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Total FTE</th>
+            <th>Total Pending Defects</th>
+            <th>Total Workable Defects</th>
+            <th>Total FTEs for Defects</th>
+            <th>Total FTE for Widgets</th>
             <th>FTEs Loaned</th>
             <th>PTOs</th>
             <th>FTEs Borrowed</th>
             <th>FTEs For Performance</th>
-            <th>FTEs For Extended Scenario Execution</th>
+            <th>FTEs For UAT Scenario Execution</th>
+            <th>FTE for Meds Defect Analysis</th>
             <th>Excess FTE</th>
-            <th>EDT Details </th>
-            <th>Di Queries</th>
-            <th>Create Date</th>
             <th>Notes</th>
         </tr>
     </thead>
@@ -56,29 +61,26 @@
     <tbody>
 
         <tr *ngFor="let feedback of fteDataAfterSearch;">
-            <td>{{feedback.id}}</td>
-                <td>{{feedback.track}}</td>
-             <td>{{feedback.employee}}</td>
-                    <td>{{feedback.weekStDt |date}}</td>
-        
-                        <td>{{feedback.ftesPerRosterCount}}</td>
-        
-                            <td>{{feedback.defectCount}}</td>
-        
-                                <td>{{feedback.widgetCount}}</td>
+            <td>{{feedback.track}}</td>
+            <td>{{feedback.weekStDt |date}}</td>
+            <td>{{feedback.weekEdDt |date}}</td>
+            <td>{{feedback.ftesPerRosterCount}}</td>
+
+            <td>{{feedback.defectCount}}</td>
+            <td>{{feedback.workableDefectsCount}}</td>
+            <td>{{feedback.defectFteCount}}</td>
+            <td>{{feedback.widgetCount}}</td>
             <td>{{feedback.ftesLoanedCount}}</td>
-        
-                <td>{{feedback.ptoCount}}</td>
+
+            <td>{{feedback.ptoCount}}</td>
             <td>{{feedback.ftesBorrowedCount}}</td>
             <td>{{feedback.ftesForPerformanceCount}}</td>
             <td>{{feedback.ftesForExtendedScenarioExecCount}}</td>
+            <td>{{feedback.medsDefAnalysisCount}}</td>
             <td>{{feedback.excessFteCount}}</td>
-            <td>{{feedback.edtDetailsCount}}</td>
-            <td>{{feedback.diQueriesCount}}</td>
-            <td>{{feedback.createDt| date}}</td>
             <td>{{feedback.note}}</td>
-        
-        
+
+
         </tr>
 
 

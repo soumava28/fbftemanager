@@ -27,12 +27,32 @@ public class FTERecord {
 	int ftesForPerformanceCount;
 	int ftesForExtendedScenarioExecCount;
 	int excessFteCount;
-	int edtDetailsCount;
-	int diQueriesCount;
+	int medsDefAnalysisCount;
+	int workableDefectsCount;
+	int defectFteCount;
+
+	public int getDefectFteCount() {
+		return defectFteCount;
+	}
+
+	public void setDefectFteCount(int defectFteCount) {
+		this.defectFteCount = defectFteCount;
+	}
+
+	public int getWorkableDefectsCount() {
+		return workableDefectsCount;
+	}
+
+	public void setWorkableDefectsCount(int workableDefectsCount) {
+		this.workableDefectsCount = workableDefectsCount;
+	}
+
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	LocalDate createDt;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	LocalDate weekStDt;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	LocalDate weekEdDt;
 	String note;
 	Employee employee;
 
@@ -40,16 +60,17 @@ public class FTERecord {
 	}
 
 	@PersistenceConstructor
-	public FTERecord(long id, String track, int ftesPerRosterCount, int defectCount, int widgetCount,
-			int ftesLoanedCount, int ptoCount, int ftesBorrowedCount, int ftesForPerformanceCount,
-			int ftesForExtendedScenarioExecCount, int excessFteCount, int edtDetailsCount, int diQueriesCount,
-			LocalDate createDt, LocalDate weekStDt, String note) {
+	public FTERecord(long id, String track, int ftesPerRosterCount, int defectCount, int defectFteCount,
+			int widgetCount, int ftesLoanedCount, int ptoCount, int ftesBorrowedCount, int ftesForPerformanceCount,
+			int ftesForExtendedScenarioExecCount, int excessFteCount, int workableDefectsCount,
+			int medsDefAnalysisCount, LocalDate createDt, LocalDate weekStDt,LocalDate weekEdDt, String note) {
 
 		super();
 		this.id = id;
 		this.track = track;
 		this.ftesPerRosterCount = ftesPerRosterCount;
 		this.defectCount = defectCount;
+		this.defectFteCount = defectFteCount;
 		this.widgetCount = widgetCount;
 		this.ftesLoanedCount = ftesLoanedCount;
 		this.ptoCount = ptoCount;
@@ -57,10 +78,11 @@ public class FTERecord {
 		this.ftesForPerformanceCount = ftesForPerformanceCount;
 		this.ftesForExtendedScenarioExecCount = ftesForExtendedScenarioExecCount;
 		this.excessFteCount = excessFteCount;
-		this.edtDetailsCount = edtDetailsCount;
-		this.diQueriesCount = diQueriesCount;
+		this.workableDefectsCount = workableDefectsCount;
+		this.medsDefAnalysisCount = medsDefAnalysisCount;
 		this.createDt = createDt;
 		this.weekStDt = weekStDt;
+		this.weekEdDt = weekEdDt;
 		this.note = note;
 	}
 
@@ -152,20 +174,12 @@ public class FTERecord {
 		this.excessFteCount = excessFteCount;
 	}
 
-	public int getEdtDetailsCount() {
-		return edtDetailsCount;
+	public int getMedsDefAnalysisCount() {
+		return medsDefAnalysisCount;
 	}
 
-	public void setEdtDetailsCount(int edtDetailsCount) {
-		this.edtDetailsCount = edtDetailsCount;
-	}
-
-	public int getDiQueriesCount() {
-		return diQueriesCount;
-	}
-
-	public void setDiQueriesCount(int diQueriesCount) {
-		this.diQueriesCount = diQueriesCount;
+	public void setMedsDefAnalysisCount(int medsDefAnalysisCount) {
+		this.medsDefAnalysisCount = medsDefAnalysisCount;
 	}
 
 	public LocalDate getCreateDt() {
@@ -184,6 +198,14 @@ public class FTERecord {
 		this.weekStDt = weekStDt;
 	}
 
+	public LocalDate getWeekEdDt() {
+		return weekEdDt;
+	}
+
+	public void setWeekEdDt(LocalDate weekEdDt) {
+		this.weekEdDt = weekEdDt;
+	}
+	
 	public String getNote() {
 		return note;
 	}

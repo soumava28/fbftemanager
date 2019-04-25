@@ -10,42 +10,63 @@
     <form class="form" #userForm="ngForm" role="insert" (ngSubmit)="submitMe()">
         <div class="contact">
             <div class="form-group">
-                <h3>New <b>FTE Request</b></h3><br />
+                <h3>New <b>FTE Tracker</b></h3><br />
                 <label>Choose Track</label>
                 <select id="track" name="track" [(ngModel)]="fterecordmodelArr[0].track" class="form-control">
-                    <option value="bm">Benefit Managment</option>
-                    <option value="ardc">ARDC</option>
-                    <option value="admin">Admin</option>
-                    <option value="co">CO</option>
+                    <option value="BM">Benefit Managment</option>
+                    <option value="ARDC">ARDC</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="CO">Correspondence</option>
+                    <option value="IN">Interfaces</option>
+                    <option value="E&T">Employment & Training</option>
+                    <option value="Reports">Reports</option>
+                    <option value="EA">EA</option>
                 </select>
-                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Week Start Date" id="weekStDt" name="weekStDt"
+                <mat-form-field>
+                    <input matInput [matDatepicker]="startpicker" placeholder="Start Date" id="weekStDt" name="weekStDt"
                         [(ngModel)]="fterecordmodelArr[0].weekStDt" class="form-control">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startpicker></mat-datepicker>
                 </mat-form-field>
-                <br/> 
-                   <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Week End Date" id="weekEdDt" name="weekEdDt"
-                        [(ngModel)]="fterecordmodelArr[0].weekEnDt" class="form-control">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                <br />
+                <mat-form-field>
+                    <input matInput [matDatepicker]="endpicker" placeholder="End Date" id="weekEdDt" name="weekEdDt"
+                        [(ngModel)]="fterecordmodelArr[0].weekEdDt" class="form-control">
+                    <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endpicker></mat-datepicker>
                 </mat-form-field>
-                <br/>
+                <br />
                 <table>
                     <tr>
                         <td>
                             <input type="number" name="ftesPerRosterCount" id="ftesPerRosterCount"
-                                placeholder="FTEs Per Roaster" required=""
+                                placeholder="Total FTE" required=""
                                 [(ngModel)]="fterecordmodelArr[0].ftesPerRosterCount" class="form-control"></td>
+
                         <td>
-                            <input type="number" name="defectCount" placeholder="Defects" required=""
-                                [(ngModel)]="fterecordmodelArr[0].defectCount" class="form-control">
+                            <input type="number" name="defectCount" id="defectCount" placeholder="Total Pending Defects"
+                                required="" [(ngModel)]="fterecordmodelArr[0].defectCount" class="form-control">
                         </td>
                     </tr>
+                </table>
+                <table>
                     <tr>
                         <td>
-                            <input type="number" name="widgetCount" id="widgetCount" placeholder="Widgets" required=""
+                            <input type="number" name="workableDefectsCount" id="workableDefectsCount"
+                                placeholder="Total Workable Defects" required=""
+                                [(ngModel)]="fterecordmodelArr[0].workableDefectsCount" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" name="defectFte" id="defectFte"
+                                placeholder="FTE for Defects" required=""
+                                [(ngModel)]="fterecordmodelArr[0].defectFteCount" class="form-control">
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="number" name="widgetCount" id="widgetCount" placeholder="FTEs for Widgets" required=""
                                 [(ngModel)]="fterecordmodelArr[0].widgetCount" class="form-control">
                         </td>
                         <td>
@@ -68,22 +89,18 @@
                     placeholder="FTEs for Perf Tasks" required=""
                     [(ngModel)]="fterecordmodelArr[0].ftesForPerformanceCount" class="form-control">
                 <input type="number" name="ftesForExtendedScenarioExecCount" id="ftesForExtendedScenarioExecCount"
-                    placeholder="FTEs for Extended Scenario Execution" required=""
+                    placeholder="FTEs for UAT Scenario Execution" required=""
                     [(ngModel)]="fterecordmodelArr[0].ftesForExtendedScenarioExecCount" class="form-control">
+                <input type="number" name="medsDefAnalysisCount" id="medsDefAnalysisCount" placeholder="Meds Defect Analysis"
+                    required="" [(ngModel)]="fterecordmodelArr[0].medsDefAnalysisCount" class="form-control">
                 <table>
                     <tr>
                         <td>
                             <input type="number" name="excessFteCount" id="excessFteCount" placeholder="Excess FTEs"
                                 required="" [(ngModel)]="fterecordmodelArr[0].excessFteCount" class="form-control">
                         </td>
-                        <td>
-                            <input type="number" name="edtDetailsCount" id="edtDetailsCount" placeholder="EDT Details"
-                                required="" [(ngModel)]="fterecordmodelArr[0].edtDetailsCount" class="form-control">
-                        </td>
                     </tr>
                 </table>
-                <input type="number" name="diQueriesCount" id="diQueriesCount" placeholder="DI Queries" required=""
-                    [(ngModel)]="fterecordmodelArr[0].diQueriesCount" class="form-control">
                 <textarea id="note" name="note" placeholder="Note" required="" [(ngModel)]="fterecordmodelArr[0].note"
                     class="form-control"></textarea>
                 <div class="send-button">

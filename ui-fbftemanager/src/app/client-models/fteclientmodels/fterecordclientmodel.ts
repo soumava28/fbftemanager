@@ -8,11 +8,12 @@ export class FteRecordClientModel {
         public ftesBorrowedCount: number;
         public ftesForPerformanceCount: number;
         public ftesForExtendedScenarioExecCount: number;
+        public defectFteCount: number;
         public excessFteCount: number;
-        public edtDetailsCount: number;
-        public diQueriesCount: number;
+        public workableDefectsCount: number;
+        public medsDefAnalysisCount: number;
         public weekStDt: Date;
-        public weekEnDt: Date;
+        public weekEdDt: Date;
         public note: string;
    /*  constructor(
         public track: string,
