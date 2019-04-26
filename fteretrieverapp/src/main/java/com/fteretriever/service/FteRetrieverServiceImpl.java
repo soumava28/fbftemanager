@@ -1,5 +1,7 @@
 package com.fteretriever.service;
 
+import static org.hamcrest.CoreMatchers.is;
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -52,6 +54,25 @@ public class FteRetrieverServiceImpl implements FteRetrieverService {
 		// Search Criteria
 		Query query = new Query();
 		query.addCriteria(Criteria.where("weekStDt").is(weekStDt));
+		List<FTERecord> fteRecords = mongoOperation.find(query, FTERecord.class);
+		return fteRecords;
+	}
+
+	@Override
+	public List<FTERecord> findByDateRange(LocalDate weekStDt, LocalDate weekEdDt) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("weekStDt").lte(weekEdDt).gte(weekStDt)
+				.and("weekEdDt").lte(weekEdDt).gte(weekStDt));
+		List<FTERecord> fteRecords = mongoOperation.find(query, FTERecord.class);
+		return fteRecords;
+	}
+
+	@Override
+	public List<FTERecord> findByDateRangenTrack(LocalDate weekStDt, LocalDate weekEdDt, String track) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("weekStDt").lte(weekEdDt).gte(weekStDt)
+				.and("weekEdDt").lte(weekEdDt).gte(weekStDt)
+				.and("track").is(track));
 		List<FTERecord> fteRecords = mongoOperation.find(query, FTERecord.class);
 		return fteRecords;
 	}

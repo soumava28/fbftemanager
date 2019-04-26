@@ -7,7 +7,7 @@ import { FteRecordClientModel } from 'src/app/client-models/fteclientmodels/fter
 })
 export class FterecorderclientsvcService {
 
-    postUrl =  'http://localhost:8090/fteinsert/fterecorder/';
+    postUrl =  'http://localhost:8090/ftemodifications/fterecorder/';
     constructor(private client: HttpClient) { }
 
     recordIt(fteRec: FteRecordClientModel[]) {

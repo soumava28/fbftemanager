@@ -39,9 +39,10 @@ public class FteRetrieverController {
 	@RequestMapping("/byDate/")
 	public List<FTERecord> getDataByDateRange(@RequestParam
 			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-	LocalDate weekStDt) throws ParseException{
+	LocalDate weekStDt,@RequestParam
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate weekEdDt) throws ParseException{
 	
-		List<FTERecord> fteRecords = this.fteSeriece.findByWeekStDt(weekStDt);
+		List<FTERecord> fteRecords = this.fteSeriece.findByDateRange(weekStDt,weekEdDt);
 		return fteRecords ;
 	}
 
@@ -49,8 +50,10 @@ public class FteRetrieverController {
 
 	public List<FTERecord> getDataByDateRange(@RequestParam
 			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate weekStDt,
+			@RequestParam
+			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate weekEdDt,
 			@RequestParam String track) throws ParseException{
-		List<FTERecord> fteRecords = this.fteSeriece.findByDateaAndtrack( weekStDt,track);
+		List<FTERecord> fteRecords = this.fteSeriece.findByDateRangenTrack(weekStDt,weekEdDt,track);
 		return fteRecords ;
 	} 
 

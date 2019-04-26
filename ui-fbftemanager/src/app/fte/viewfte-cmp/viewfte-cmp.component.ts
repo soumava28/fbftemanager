@@ -3,6 +3,9 @@ import { FteretrieverService } from 'src/app/client-services/fteretrieverservice
 import { FteRecordClientModel } from 'src/app/client-models/fteclientmodels/fterecordclientmodel';
 import * as XLSX from 'xlsx';
 import { MatTableDataSource } from '@angular/material';
+import { FtedeleteService } from 'src/app/client-services/ftedeleteservice/ftedelete.service';
+import { OkdialogcmpComponent } from 'src/app/dialogs/okdialogcmp/okdialogcmp.component';
+
 
 @Component({
     selector: 'app-viewfte-cmp',
@@ -14,13 +17,13 @@ export class ViewfteCmpComponent implements OnInit {
 
     public fteDataAfterSearch: any[];
     fterecordmodel: FteRecordClientModel = new FteRecordClientModel();
+
     @ViewChild('TABLE') table: ElementRef;
     public displayedColumns: string[] = ['track', 'weekStDt', 'weekEdDt', 'ftesPerRosterCount', 'defectCount', 'workableDefectsCount',
         'defectFteCount', 'widgetCount', 'ftesLoanedCount', 'ptoCount', 'ftesBorrowedCount', 'ftesForPerformanceCount',
         'ftesForExtendedScenarioExecCount', 'medsDefAnalysisCount', 'excessFteCount', 'note'];
     public dataSource: any;
-    constructor(private fteRetrieveServiece: FteretrieverService) {
-    }
+ 
 
     ExportTOExcel() {
         const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
@@ -32,6 +35,10 @@ export class ViewfteCmpComponent implements OnInit {
 
     }
 
+
+    // tslint:disable-next-line:max-line-length
+    constructor(private fteRetrieveServiece: FteretrieverService, private okDialogue: MatDialog, private ftedeleteService: FtedeleteService) { }
+
     searchData() {
         this.fteDataAfterSearch = [];
         console.log('Fetched Data --->');
@@ -41,7 +48,40 @@ export class ViewfteCmpComponent implements OnInit {
         this.dataSource = [...this.dataSource];
     }
     ngOnInit() {
+        this.fterecordmodel.weekEdDt = new Date();
+        this.fterecordmodel.weekStDt = new Date();
+        this.fterecordmodel.track = 'All';
     }
+    deleteData(id) {
+        this.ftedeleteService.removeData(id)
+            .subscribe(
+                data => {
+                    console.log('Success!', data);
+                    this.okDialogue.open(OkdialogcmpComponent, {
+                        data: {
+                            message: 'Deleted Successfully!',
+                            buttonText: {
+                                ok: 'OK'
+                                // cancel: 'No'
+                            }
+                        }
 
+                    });
+                },
+                error => {
+                    console.error('Error!', error);
+                    this.okDialogue.open(OkdialogcmpComponent, {
+                        data: {
+                            message: 'Something went wrong! Please try again/Contact the administrator!',
+                            buttonText: {
+                                ok: 'OK'
+                                // cancel: 'No'
+                            }
+                        }
+                    });
+                }
+            );
+        this.searchData();
+    }
 }
 

@@ -6,4 +6,6 @@ import com.fterecorder.app.model.FTERecord;
 
 public interface FTERecorderService {
 	public boolean insertRecords(List<FTERecord> records);
+
+	public boolean deleteById(Long id);
 }

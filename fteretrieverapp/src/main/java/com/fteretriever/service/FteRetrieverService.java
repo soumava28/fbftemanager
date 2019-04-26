@@ -13,5 +13,8 @@ public interface FteRetrieverService {
 	public abstract List<FTERecord> findBytrack(String track);
 	public abstract List<FTERecord> getAllData();
 	public abstract List<FTERecord> getDataByWeekStDt(LocalDate weekStDt);
+	public abstract List<FTERecord> findByDateRange(LocalDate weekStDt, LocalDate weekEdDt);
+	public abstract List<FTERecord> findByDateRangenTrack(LocalDate weekStDt, LocalDate weekEdDt, String track);
+	
 
 }

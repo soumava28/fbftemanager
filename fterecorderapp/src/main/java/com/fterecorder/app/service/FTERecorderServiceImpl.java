@@ -1,7 +1,6 @@
 package com.fterecorder.app.service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fterecorder.app.dao.FTERecordSequenceDao;
 import com.fterecorder.app.dao.FTERecorderRepo;
+import com.fterecorder.app.dao.FTERecordsDao;
 import com.fterecorder.app.model.FTERecord;
 
 @Service
@@ -21,6 +21,9 @@ public class FTERecorderServiceImpl implements FTERecorderService {
 
 	@Autowired
 	FTERecordSequenceDao seq;
+	
+	@Autowired
+	FTERecordsDao fteDao;
 
 	@Override
 	public boolean insertRecords(List<FTERecord> records) {
@@ -39,4 +42,16 @@ public class FTERecorderServiceImpl implements FTERecorderService {
 		}
 	}
 
+	@Override
+	public boolean deleteById(Long id) {
+		try {
+			fteDao.deleteRecordsById(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
 }

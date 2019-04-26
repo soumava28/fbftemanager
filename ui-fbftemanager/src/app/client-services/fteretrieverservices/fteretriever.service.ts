@@ -15,9 +15,9 @@ export class FteretrieverService {
         return this.httpServices.get(this.baseUrl);
     }
 
-    getDatafromWeekStDt(weekStDt): any {
+    getDataFromDateRange(weekStDt, weekEdDt): any {
         this.backUrl = 'byDate/';
-        const params = new HttpParams().set('weekStDt', weekStDt);
+        const params = new HttpParams().set('weekStDt', weekStDt).set('weekEdDt', weekEdDt);
         console.log(params);
         return this.httpServices.get(this.baseUrl + this.backUrl, { params });
     }
@@ -31,9 +31,11 @@ export class FteretrieverService {
     }
 
 
-    getDataWeekStDtnTrack(track, weekStDt): any {
+    getDataFromDtRangenTrack(track, weekStDt, weekEdDt): any {
         this.backUrl = 'byDatenTrack/';
-        const params = new HttpParams().set('weekStDt', weekStDt).set('track', track);
+        const params = new HttpParams().set('weekStDt', weekStDt)
+            .set('weekEdDt', weekEdDt)
+            .set('track', track);
         console.log(params);
         return this.httpServices.get(this.baseUrl + this.backUrl, { params });
     }
@@ -45,16 +47,16 @@ export class FteretrieverService {
             });
         return this.fteDataRetrievedSet;
     }
-    getDataFromWeekStDtArray(weekStDt): any[] {
-        this.getDatafromWeekStDt(this.datePipe.transform(new Date(weekStDt), 'yyyy-MM-dd')).subscribe(
+    getDataFromDateRangeArray(weekStDt, weekEdDt): any[] {
+        this.getDataFromDateRange(this.datePipe.transform(new Date(weekStDt), 'yyyy-MM-dd'), this.datePipe.transform(new Date(weekEdDt), 'yyyy-MM-dd')).subscribe(
             resp => {
                 Object.assign(this.fteDataRetrievedSet, resp);
             });
         return this.fteDataRetrievedSet;
     }
 
-    getDataWeekStDtnTrackArray(track, weekStDt): any[] {
-        this.getDataWeekStDtnTrack(track, this.datePipe.transform(new Date(weekStDt), 'yyyy-MM-dd')).subscribe(
+    getDataFromDtRangenTrackArray(track, weekStDt, weekEdDt): any[] {
+        this.getDataFromDtRangenTrack(track, this.datePipe.transform(new Date(weekStDt), 'yyyy-MM-dd'), this.datePipe.transform(new Date(weekEdDt), 'yyyy-MM-dd')).subscribe(
             resp => {
                 Object.assign(this.fteDataRetrievedSet, resp);
             });
@@ -70,16 +72,17 @@ export class FteretrieverService {
     }
 
     getDataInArrayFormat(fterecordmodel): any[] {
+        this.fteDataRetrievedSet = new Array();
         this.backUrl = '';
         if (fterecordmodel.track === undefined && fterecordmodel.weekStDt === undefined) {
             return this.getAllDataInArrayFormat();
         } else {
-            if (fterecordmodel.track === undefined) {
-                return this.getDataFromWeekStDtArray(fterecordmodel.weekStDt);
-            } else if (fterecordmodel.weekStDt === undefined) {
+            if (fterecordmodel.track === 'All') {
+                return this.getDataFromDateRangeArray(fterecordmodel.weekStDt, fterecordmodel.weekEdDt);
+            } else if (fterecordmodel.weekStDt === undefined && fterecordmodel.weekEdDt === undefined) {
                 return this.getDatafromTrackArray(fterecordmodel.track);
             } else {
-                return this.getDataWeekStDtnTrackArray(fterecordmodel.track, fterecordmodel.weekStDt);
+                return this.getDataFromDtRangenTrackArray(fterecordmodel.track, fterecordmodel.weekStDt, fterecordmodel.weekEdDt);
             }
         }
 

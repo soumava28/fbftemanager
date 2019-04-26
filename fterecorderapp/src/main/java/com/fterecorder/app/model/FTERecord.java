@@ -63,7 +63,7 @@ public class FTERecord {
 	public FTERecord(long id, String track, int ftesPerRosterCount, int defectCount, int defectFteCount,
 			int widgetCount, int ftesLoanedCount, int ptoCount, int ftesBorrowedCount, int ftesForPerformanceCount,
 			int ftesForExtendedScenarioExecCount, int excessFteCount, int workableDefectsCount,
-			int medsDefAnalysisCount, LocalDate createDt, LocalDate weekStDt,LocalDate weekEdDt, String note) {
+			int medsDefAnalysisCount, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate createDt, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate weekStDt, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate weekEdDt, String note) {
 
 		super();
 		this.id = id;
