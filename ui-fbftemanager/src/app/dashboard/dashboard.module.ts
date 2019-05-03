@@ -15,6 +15,7 @@ import { OkdialogcmpComponent } from '../dialogs/okdialogcmp/okdialogcmp.compone
 import { DefectloaderCmpComponent } from '../defect/defectloader-cmp/defectloader-cmp.component';
 import { DefectretrieverCmpComponent } from '../defect/defectretriever-cmp/defectretriever-cmp.component';
 import { DefectModule } from '../defect/defect.module';
+import { EditdilalogcmpComponent } from '../dialogs/editdilalogcmp/editdilalogcmp.component';
 
 const appRoutes: Routes = [
     { path: 'dashboard/', component: FteCmpComponent, pathMatch: 'full' },
@@ -32,7 +33,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    declarations: [DashboardCmpComponent, SidenavCmpComponent, OkdialogcmpComponent],
+    declarations: [DashboardCmpComponent, SidenavCmpComponent, OkdialogcmpComponent  ],
     imports: [
         CommonModule,
         BrowserModule,
@@ -44,6 +45,6 @@ const appRoutes: Routes = [
         DefectModule,
         CustomMaterialModule,
     ],
-    entryComponents: [OkdialogcmpComponent],
+    entryComponents: [OkdialogcmpComponent , EditdilalogcmpComponent],
 })
 export class DashboardModule { }

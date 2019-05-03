@@ -15,6 +15,7 @@
 
         <!-- <input type="submit" value="Submit"> -->
         <input type="button" (click)="searchData()" value="Search">
+           
 
     </form>
 </div>
@@ -51,11 +52,11 @@
 
             <td>{{defect.defectSeverity}}</td>
 
-            <td><input type="button" value="Edit" (click)="editData(defect.id)"></td>
-            <app-dialog [(visible)]="showDialog">
+            <td><input type="button" value="Edit" (click)="editData(defect)"></td>
+    <!--         <app-dialog [(visible)]="showDialog">
                 <h1>Hello World</h1>
                 <button (click)="showDialog = !showDialog" class="btn">Close</button>
-            </app-dialog>
+            </app-dialog> -->
 
         </tr>
 

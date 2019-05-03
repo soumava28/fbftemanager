@@ -7,9 +7,9 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
     styleUrls: ['./okdialogcmp.component.scss']
 })
 export class OkdialogcmpComponent {
-    message: string = 'Are you sure?' //Default messages
-    confirmButtonText = "Yes"
-    cancelButtonText = "Cancel"
+     message = 'Are you sure?'; // Default messages
+    confirmButtonText = 'Yes';
+    cancelButtonText = 'Cancel';
     constructor(
         @Inject(MAT_DIALOG_DATA) private data: any,
         private dialogRef: MatDialogRef<OkdialogcmpComponent>) {
