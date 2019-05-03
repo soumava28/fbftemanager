@@ -1,0 +1,70 @@
+.pure-table{
+  margin: 0 auto;
+  text-align: center;
+}
+
+th[colspan ="16"]{
+  text-align: center;
+}
+
+thead th{
+text-align: center;
+} 
+
+.ftecontainer {
+    width: 400px;
+    margin: 0 auto;
+    background-color: #DCDCDC;
+    color: #000;
+    font-family: 'Raleway', sans-serif;
+    text-align: left;
+    padding: 2%;
+    overflow:auto;
+    border-radius: 5px;
+    //display: inline-block;
+    margin: 0 auto;
+}
+
+form[role=insert] h3 {
+	font-size: 30px;
+	text-align: center;
+	color: #A9A9A9;
+	padding: 35px 0 12px 0;
+}
+form[role=insert] h3 b {
+		color: #013781;
+}
+
+
+
+input[type="button"], input[type="submit"] {
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+        padding: 10px 0;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+    color: #FFF;
+    background-color: #009688;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #F96D6E;
+}
+
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    outline: none;
+    color: #000;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}

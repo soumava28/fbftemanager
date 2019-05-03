@@ -1,3 +1,68 @@
-<p>
-  defectretriever-cmp works!
-</p>
+<head>
+    <title>viewdefects</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+        integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+</head>
+<div class="ftecontainer">
+    <form class="form" #defectForm role="insert">
+
+        <label>Choose Track</label>
+        <select id="source" name="source" [(ngModel)]="defectsearchModel.source" class="form-control">
+            <option value="MEDS">Meds</option>
+        </select>
+        <input type="text" [(ngModel)]="defectsearchModel.defectId" name="defectId" id="defectId">
+
+
+        <!-- <input type="submit" value="Submit"> -->
+        <input type="button" (click)="searchData()" value="Search">
+
+    </form>
+</div>
+<table class="pure-table pure-table-horizontal">
+    <thead>
+        <tr>
+            <th>Track</th>
+            <th>Key</th>
+            <th>Summary</th>
+            <th>Second Level Analysi</th>
+            <th>Description</th>
+            <th>Component/s</th>
+            <th>Status</th>
+            <th>Defect Severity</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let defect of defectData;">
+            <td>{{defect.track}}</td>
+            <td>{{defect.key}}</td>
+
+            <td>{{defect.summary}}</td>
+
+            <td>{{defect.secondLevelAnalysis}}</td>
+
+            <td>{{defect.description}}</td>
+
+            <td>{{defect.components}}</td>
+
+            <td>{{defect.status}}</td>
+
+            <td>{{defect.defectSeverity}}</td>
+
+            <td><input type="button" value="Edit" (click)="editData(defect.id)"></td>
+            <app-dialog [(visible)]="showDialog">
+                <h1>Hello World</h1>
+                <button (click)="showDialog = !showDialog" class="btn">Close</button>
+            </app-dialog>
+
+        </tr>
+
+
+        <tr *ngIf="defectData.length ==0">
+            <td colspan="16"> <b>*No records found* !</b></td>
+
+        </tr>
+    </tbody>
+</table>

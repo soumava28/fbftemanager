@@ -8,4 +8,6 @@ import com.deloitte.defectRetriever.model.DefectRecord;
 
 public interface DefectRetrieverRepo extends MongoRepository<DefectRecord, String> {
 	List<DefectRecord> findBySource(String source);
+
+	List<DefectRecord> findByKey(String defectId);
 }

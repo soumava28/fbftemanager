@@ -8,4 +8,6 @@ public interface DefectRetrieverService {
 
 	public List<DefectRecord> fetchRecords(String source);
 
+	public List<DefectRecord> fetchRecordsById(String defectId);
+
 }

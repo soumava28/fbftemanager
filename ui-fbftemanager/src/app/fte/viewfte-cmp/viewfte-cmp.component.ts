@@ -23,7 +23,7 @@ export class ViewfteCmpComponent implements OnInit {
         'defectFteCount', 'widgetCount', 'ftesLoanedCount', 'ptoCount', 'ftesBorrowedCount', 'ftesForPerformanceCount',
         'ftesForExtendedScenarioExecCount', 'medsDefAnalysisCount', 'excessFteCount', 'note'];
     public dataSource: any;
- 
+
 
     ExportTOExcel() {
         const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);

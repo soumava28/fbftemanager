@@ -23,4 +23,13 @@ public class DefectRetrieverServiceImpl implements DefectRetrieverService {
 		return null;
 	}
 
+	@Override
+	public List<DefectRecord> fetchRecordsById(String defectId) {
+		List<DefectRecord> defectList = defectRecordRepo.findByKey(defectId);
+		if (defectList != null) {
+			return defectList;
+		}
+		return null;
+	}
+
 }
