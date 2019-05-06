@@ -2,7 +2,8 @@
     <title>viewdefects</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
         integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 <div class="ftecontainer">
     <form class="form" #defectForm role="insert">
 
@@ -15,55 +16,57 @@
 
         <!-- <input type="submit" value="Submit"> -->
         <input type="button" (click)="searchData()" value="Search">
-           
+
 
     </form>
 </div>
-<table class="pure-table pure-table-horizontal">
-    <thead>
-        <tr>
-            <th>Track</th>
-            <th>Key</th>
-            <th>Summary</th>
-            <th>Second Level Analysi</th>
-            <th>Description</th>
-            <th>Component/s</th>
-            <th>Status</th>
-            <th>Defect Severity</th>
-            <th>Edit</th>
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="track">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> track </th>
+            <td mat-cell *matCellDef="let row"> {{row.track}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Key">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Key </th>
+            <td mat-cell *matCellDef="let row"> {{row.key}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Summary">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Summary </th>
+            <td mat-cell *matCellDef="let row"> {{row.summary}} </td>
+        </ng-container>
+        <ng-container matColumnDef="SecondLevelAnalysi">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Second Level Analysi </th>
+            <td mat-cell *matCellDef="let row"> {{row.secondLevelAnalysis}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+            <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Component/s">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Component/s </th>
+            <td mat-cell *matCellDef="let row"> {{row.components}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+        </ng-container>
+        <ng-container matColumnDef="DefectSeverity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Defect Severity </th>
+            <td mat-cell *matCellDef="let row"> {{row.defectSeverity}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Edit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+            <td mat-cell *matCellDef="let row"> <a class="fa fa-edit" style="font-size:36px"  (click)='editData(row)'></a></td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
         </tr>
-    </thead>
-
-    <tbody>
-
-        <tr *ngFor="let defect of defectData;">
-            <td>{{defect.track}}</td>
-            <td>{{defect.key}}</td>
-
-            <td>{{defect.summary}}</td>
-
-            <td>{{defect.secondLevelAnalysis}}</td>
-
-            <td>{{defect.description}}</td>
-
-            <td>{{defect.components}}</td>
-
-            <td>{{defect.status}}</td>
-
-            <td>{{defect.defectSeverity}}</td>
-
-            <td><input type="button" value="Edit" (click)="editData(defect)"></td>
-    <!--         <app-dialog [(visible)]="showDialog">
-                <h1>Hello World</h1>
-                <button (click)="showDialog = !showDialog" class="btn">Close</button>
-            </app-dialog> -->
-
-        </tr>
-
-
-        <tr *ngIf="defectData.length ==0">
-            <td colspan="16"> <b>*No records found* !</b></td>
-
-        </tr>
-    </tbody>
-</table>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

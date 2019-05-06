@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -85,11 +87,11 @@ public class DefectLoaderController {
 
 	}
 
-	@RequestMapping(path = "/updateDefectDump", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public boolean updateDefects(@RequestBody List<DefectRecord> records) {
+	@RequestMapping(path = "/updateDefectDump", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public boolean updateDefects(@RequestBody DefectRecord records) {
 		LOG.log(Level.INFO, "Updating defect dump");
 		boolean isDataUpdated = false;
-		isDataUpdated = service.updateRecords(records);
+		isDataUpdated = service.updateRecords(Stream.of(records).collect(Collectors.toList()));
 		return isDataUpdated;
 
 	}

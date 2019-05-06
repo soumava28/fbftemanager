@@ -4,7 +4,7 @@ import { DefectloaderCmpComponent } from './defectloader-cmp/defectloader-cmp.co
 import { DefectretrieverCmpComponent } from './defectretriever-cmp/defectretriever-cmp.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatPaginator, MatPaginatorModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     declarations: [DefectloaderCmpComponent, DefectretrieverCmpComponent],
@@ -14,7 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         BrowserModule,
         BrowserAnimationsModule,
         MatTableModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatInputModule
     ]
 })
 export class DefectModule {
