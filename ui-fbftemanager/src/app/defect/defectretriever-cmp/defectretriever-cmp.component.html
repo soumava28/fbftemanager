@@ -11,49 +11,49 @@
         <select id="source" name="source" [(ngModel)]="defectsearchModel.source" class="form-control">
             <option value="MEDS">Meds</option>
         </select>
-        <input type="text" [(ngModel)]="defectsearchModel.defectId" name="defectId" id="defectId">
-
+        <br>
 
         <!-- <input type="submit" value="Submit"> -->
         <input type="button" (click)="searchData()" value="Search">
 
 
     </form>
+    <br>
 </div>
 <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 <div class="mat-elevation-z8">
 
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8">
 
         <!-- ID Column -->
         <ng-container matColumnDef="track">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> track </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Track / Module </th>
             <td mat-cell *matCellDef="let row"> {{row.track}} </td>
         </ng-container>
         <ng-container matColumnDef="Key">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Key </th>
+            <th mat-header-cell *matHeaderCellDef > Key </th>
             <td mat-cell *matCellDef="let row"> {{row.key}} </td>
         </ng-container>
         <ng-container matColumnDef="Summary">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Summary </th>
+            <th mat-header-cell *matHeaderCellDef > Summary </th>
             <td mat-cell *matCellDef="let row"> {{row.summary}} </td>
         </ng-container>
         <ng-container matColumnDef="SecondLevelAnalysi">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Second Level Analysi </th>
+            <th mat-header-cell *matHeaderCellDef > Second Level Analysi </th>
             <td mat-cell *matCellDef="let row"> {{row.secondLevelAnalysis}} </td>
         </ng-container>
         <ng-container matColumnDef="Description">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+            <th mat-header-cell *matHeaderCellDef > Description </th>
             <td mat-cell *matCellDef="let row"> {{row.description}} </td>
         </ng-container>
         <ng-container matColumnDef="Component/s">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Component/s </th>
+            <th mat-header-cell *matHeaderCellDef > Component/s </th>
             <td mat-cell *matCellDef="let row"> {{row.components}} </td>
         </ng-container>
         <ng-container matColumnDef="Status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <th mat-header-cell *matHeaderCellDef> Status </th>
             <td mat-cell *matCellDef="let row"> {{row.status}} </td>
         </ng-container>
         <ng-container matColumnDef="DefectSeverity">
@@ -61,7 +61,7 @@
             <td mat-cell *matCellDef="let row"> {{row.defectSeverity}} </td>
         </ng-container>
         <ng-container matColumnDef="Edit">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+            <th mat-header-cell *matHeaderCellDef > Edit </th>
             <td mat-cell *matCellDef="let row"> <a class="fa fa-edit" style="font-size:36px"  (click)='editData(row)'></a></td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
