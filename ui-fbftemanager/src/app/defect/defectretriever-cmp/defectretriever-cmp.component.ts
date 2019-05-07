@@ -15,14 +15,14 @@ export class DefectretrieverCmpComponent implements OnInit {
     defectsearchModel: DefectsearchclientModule = new DefectsearchclientModule();
     defectData: any[] = [];
     displayedColumns: string[] = ['track', 'Key', 'Summary',
-        'SecondLevelAnalysi', 'Description', 'Component/s', 'Status', 'DefectSeverity', 'Edit'];
+        'applicableForIe?', 'tobefixed?', 'Comments', 'Edit'];
     dataSource = new MatTableDataSource();
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     constructor(private defectFetch: DefectfetchService, private okDialogue: MatDialog) { }
 
     ngOnInit() {
-        this.defectsearchModel.source = 'MEDS';
+        this.defectsearchModel.source = 'Meds';
     }
 
     editData(defect) {

@@ -2,10 +2,25 @@
    <label>Track</label>
    <input type="text" [(ngModel)]= "defectData.track" >
     <label>Key</label>
-   <input type="text" [(ngModel)]= "defectData.key">
+   <input type="text" [(ngModel)]= "defectData.key" disabled>
     <label>Summary</label>
-   <input type="text" [(ngModel)]= "defectData.summary">
+   <input type="text" [(ngModel)]= "defectData.summary" disabled>
+       <label>Applicable to IE?</label>
+
+    <select id="validIE" name="validIE" [(ngModel)]="defectData.applicableToIE" >
+            <option value="Yes">Yes</option>
+              <option value="Not Started">Not Started</option>
+                <option value="Check with FL">Check with FL</option>
+                  <option value="Other">Other</option>
+                   <option value="No">No</option>
+        </select>
+    <label>To be fixed? (IE JIRA ID)</label>
+        
+   <input type="text" [(ngModel)]= "defectData.newJiraId">
+       <label>Comments</label>
+   <input type="text" [(ngModel)]= "defectData.comments">
 
 
 
-	<button mat-raised-button color="primary" (click)="onConfirmClick(defectData)" tabindex="1">Submit}</button>
+    <input type = "button" mat-raised-button color="primary"  (click)="onConfirmClick(defectData)" value = "Submit" tabindex="1">
+

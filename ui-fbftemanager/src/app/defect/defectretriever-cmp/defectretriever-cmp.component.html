@@ -2,14 +2,14 @@
     <title>viewdefects</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
         integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 <div class="ftecontainer">
     <form class="form" #defectForm role="insert">
 
         <label>Choose Track</label>
         <select id="source" name="source" [(ngModel)]="defectsearchModel.source" class="form-control">
-            <option value="MEDS">Meds</option>
+            <option value="Meds">Meds</option>
         </select>
         <br>
 
@@ -20,56 +20,45 @@
     </form>
     <br>
 </div>
-<div class="padder">
-    <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-    <div class="mat-elevation-z8">
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<div class="mat-elevation-z8">
 
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8">
 
-            <!-- ID Column -->
-            <ng-container matColumnDef="track">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Track / Module </th>
-                <td mat-cell *matCellDef="let row"> {{row.track}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Key">
-                <th mat-header-cell *matHeaderCellDef> Key </th>
-                <td mat-cell *matCellDef="let row"> {{row.key}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Summary">
-                <th mat-header-cell *matHeaderCellDef> Summary </th>
-                <td mat-cell *matCellDef="let row"> {{row.summary}} </td>
-            </ng-container>
-            <ng-container matColumnDef="SecondLevelAnalysi">
-                <th mat-header-cell *matHeaderCellDef> Second Level Analysi </th>
-                <td mat-cell *matCellDef="let row"> {{row.secondLevelAnalysis}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Description">
-                <th mat-header-cell *matHeaderCellDef> Description </th>
-                <td mat-cell *matCellDef="let row"> {{row.description}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Component/s">
-                <th mat-header-cell *matHeaderCellDef> Component/s </th>
-                <td mat-cell *matCellDef="let row"> {{row.components}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Status">
-                <th mat-header-cell *matHeaderCellDef> Status </th>
-                <td mat-cell *matCellDef="let row"> {{row.status}} </td>
-            </ng-container>
-            <ng-container matColumnDef="DefectSeverity">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Defect Severity </th>
-                <td mat-cell *matCellDef="let row"> {{row.defectSeverity}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Edit">
-                <th mat-header-cell *matHeaderCellDef> Edit </th>
-                <td mat-cell *matCellDef="let row"> <a class="fa fa-edit" style="font-size:36px"
-                        (click)='editData(row)'></a></td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-            </tr>
-        </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-    </div>
+        <!-- ID Column -->
+        <ng-container matColumnDef="track">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Track / Module </th>
+            <td mat-cell *matCellDef="let row"> {{row.track}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Key">
+            <th mat-header-cell *matHeaderCellDef > Key </th>
+            <td mat-cell *matCellDef="let row"> {{row.key}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Summary">
+            <th mat-header-cell *matHeaderCellDef > Summary </th>
+            <td mat-cell *matCellDef="let row"> {{row.summary}} </td>
+        </ng-container>
+        <ng-container matColumnDef="applicableForIe?">
+            <th mat-header-cell *matHeaderCellDef > Applicable to IE? </th>
+            <td mat-cell *matCellDef="let row"> {{row.applicableToIE}} </td>
+        </ng-container>
+        <ng-container matColumnDef="tobefixed?">
+            <th mat-header-cell *matHeaderCellDef > To be fixed? (IE JIRA ID) </th>
+            <td mat-cell *matCellDef="let row"> {{row.newJiraId}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Comments">
+            <th mat-header-cell *matHeaderCellDef > Comments </th>
+            <td mat-cell *matCellDef="let row"> {{row.comments}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Edit">
+            <th mat-header-cell *matHeaderCellDef > Edit </th>
+            <td mat-cell *matCellDef="let row"> <a class="fa fa-edit" style="font-size:36px"  (click)='editData(row)'></a></td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons ></mat-paginator>
 </div>
