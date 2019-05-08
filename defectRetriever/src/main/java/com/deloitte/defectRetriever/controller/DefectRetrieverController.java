@@ -49,5 +49,11 @@ public class DefectRetrieverController {
 		return null;
 
 	}
+	
+	@RequestMapping(path = "/getAllData")
+	public List<DefectRecord> fetchAllData() {
+		LOG.log(Level.INFO, "Fetching defect Dump");
+		return  service.fetchAllData();
+	}
 
 }

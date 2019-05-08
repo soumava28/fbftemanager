@@ -12,7 +12,8 @@ export class DefectfetchService {
     constructor(private httpServices: HttpClient) { }
     baseUrl = 'http://localhost:8090/defectfetch/defectRetriever/';
     backUrl = '';
-    dataSource : MatTableDataSource<any>  = new MatTableDataSource();
+    exportUrl = 'http://localhost:8080/defectsToExcel/saveDataExcel';
+    dataSource: MatTableDataSource<any> = new MatTableDataSource();
     getDataFromHttpSource(source): any {
         this.backUrl = 'fetchDefect';
         const params = new HttpParams().set('source', source);
@@ -24,14 +25,18 @@ export class DefectfetchService {
         this.getDataFromHttpSource(source).subscribe(
             resp => {
                 Object.assign(this.fteDataRetrievedSet, resp);
-                this.dataSource.data = this.fteDataRetrievedSet ;
+                this.dataSource.data = this.fteDataRetrievedSet;
             });
         return this.dataSource;
     }
 
 
     getDataInArrayFormat(defectmodel): MatTableDataSource<any> {
-      this.dataSource.data = [];
+        this.dataSource.data = [];
         return this.getDataFromSource(defectmodel.source);
+    }
+
+    exportDataToExcel(): string {
+        return this.exportUrl;
     }
 }

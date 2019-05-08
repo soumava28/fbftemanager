@@ -19,6 +19,7 @@ export class DefectretrieverCmpComponent implements OnInit {
     dataSource = new MatTableDataSource();
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+        exportUrl = 'http://localhost:8080/defectsToExcel/saveDataExcel';
     constructor(private defectFetch: DefectfetchService, private okDialogue: MatDialog) { }
 
     ngOnInit() {
@@ -49,5 +50,7 @@ export class DefectretrieverCmpComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
-
+    getUrltoExport() : string {
+       return this.defectFetch.exportDataToExcel();
+    }
 }

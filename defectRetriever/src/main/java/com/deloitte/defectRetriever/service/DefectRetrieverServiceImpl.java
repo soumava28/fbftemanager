@@ -32,4 +32,9 @@ public class DefectRetrieverServiceImpl implements DefectRetrieverService {
 		return null;
 	}
 
+	@Override
+	public List<DefectRecord> fetchAllData() {
+		return defectRecordRepo.findAll();
+	}
+
 }

@@ -64,7 +64,7 @@ public class FteRetrieverServiceImpl implements FteRetrieverService {
 	public List<FTERecord> findByDateRange(LocalDate weekStDt, LocalDate weekEdDt) {
 		Query query = new Query();
 		query.addCriteria(
-				Criteria.where("weekStDt").lte(weekEdDt).gte(weekStDt).and("weekEdDt").lte(weekEdDt).gte(weekStDt));
+				Criteria.where("weekStDt").lte(weekEdDt.plusDays(1)).gte(weekStDt).and("weekEdDt").lte(weekEdDt).gte(weekStDt.plusDays(1)));
 		List<FTERecord> fteRecords = mongoOperation.find(query, FTERecord.class);
 		return fteRecords;
 	}
@@ -72,7 +72,7 @@ public class FteRetrieverServiceImpl implements FteRetrieverService {
 	@Override
 	public List<FTERecord> findByDateRangenTrack(LocalDate weekStDt, LocalDate weekEdDt, String track) {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("weekStDt").lte(weekEdDt).gte(weekStDt).and("weekEdDt").lte(weekEdDt)
+		query.addCriteria(Criteria.where("weekStDt").lte(weekEdDt.plusDays(1)).gte(weekStDt).and("weekEdDt").lte(weekEdDt.plusDays(1))
 				.gte(weekStDt).and("track").is(track));
 		List<FTERecord> fteRecords = mongoOperation.find(query, FTERecord.class);
 		return fteRecords;
