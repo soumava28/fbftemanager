@@ -58,7 +58,7 @@ public class DefectLoaderController {
 			defRecord.setApplicableToIE(formatter.formatCellValue(row.getCell(2)));
 			defRecord.setNewJiraId(formatter.formatCellValue(row.getCell(3)));
 			defRecord.setComments(formatter.formatCellValue(row.getCell(4)));
-			if ("".equals(formatter.formatCellValue(row.getCell(5)).trim())) {
+			if (!"".equals(formatter.formatCellValue(row.getCell(5)).trim())) {
 				defRecord.setTrack(formatter.formatCellValue(row.getCell(5)));
 			}else{
 				defRecord.setTrack("NA");

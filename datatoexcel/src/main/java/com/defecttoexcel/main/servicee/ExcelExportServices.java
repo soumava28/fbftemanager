@@ -1,6 +1,7 @@
 package com.defecttoexcel.main.servicee;
 
 import java.io.ByteArrayInputStream;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -19,14 +20,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.defecttoexcel.main.model.Customer;
 import com.defecttoexcel.main.model.DefectRecord;
+
 @Service
 public class ExcelExportServices {
 
-	public  ByteArrayInputStream customersToExcel(List<DefectRecord> customers) throws IOException {
-		String[] COLUMNs = { "Key", "Track/Module", "Summary", "Applicable to IE?" 
-				, "To be fixed? (IE JIRA ID)" , "Comments" };
+	public ByteArrayInputStream customersToExcel(List<DefectRecord> defectrRecords) throws IOException {
+		String[] COLUMNs = { "Key", "Track/Module", "Summary", "Applicable to IE?", "To be fixed? (IE JIRA ID)",
+				"Comments", "Updated Date" };
 		try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream();) {
 			CreationHelper createHelper = workbook.getCreationHelper();
 
@@ -54,32 +55,33 @@ public class ExcelExportServices {
 			ageCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("#"));
 
 			int rowIdx = 1;
-			for (DefectRecord customer : customers) {
+			for (DefectRecord defectRecord : defectrRecords) {
 				Row row = sheet.createRow(rowIdx++);
 
-				row.createCell(0).setCellValue(customer.getKey());
-				row.createCell(1).setCellValue(customer.getTrack());
-				row.createCell(2).setCellValue(customer.getSummary());
-				row.createCell(3).setCellValue(customer.getApplicableToIE());
-				row.createCell(4).setCellValue(customer.getNewJiraId());
-				row.createCell(5).setCellValue(customer.getComments());
+				row.createCell(0).setCellValue(defectRecord.getKey());
+				row.createCell(1).setCellValue(defectRecord.getTrack());
+				row.createCell(2).setCellValue(defectRecord.getSummary());
+				row.createCell(3).setCellValue(defectRecord.getApplicableToIE());
+				row.createCell(4).setCellValue(defectRecord.getNewJiraId());
+				row.createCell(5).setCellValue(defectRecord.getComments());
+				if (null!=defectRecord.getUpdateDt()) {
+					row.createCell(6).setCellValue(defectRecord.getUpdateDt().toString());
+				}else {
+					row.createCell(6).setCellValue("");
+				}
 				
-			
-			
+
 			}
 
 			workbook.write(out);
 			return new ByteArrayInputStream(out.toByteArray());
 		}
 	}
-	
+
 	public ResponseEntity<InputStreamResource> saveExelData(List<DefectRecord> defectRecords) throws IOException {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Disposition", "attachment; filename=customers.xlsx");
+		headers.add("Content-Disposition", "attachment; filename=DefectDataDump.xlsx");
 
-		return ResponseEntity
-				.ok()
-				.headers(headers)
-				.body(new InputStreamResource(customersToExcel(defectRecords)));
+		return ResponseEntity.ok().headers(headers).body(new InputStreamResource(customersToExcel(defectRecords)));
 	}
 }

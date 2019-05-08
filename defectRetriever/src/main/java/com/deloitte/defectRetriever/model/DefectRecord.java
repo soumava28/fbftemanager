@@ -1,12 +1,16 @@
 package com.deloitte.defectRetriever.model;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection = "DefectRecord")
 public class DefectRecord {
+
 	@Transient
 	public static final String SEQUENCE_NAME = "defectrecord_seq";
 	@Id
@@ -27,6 +31,8 @@ public class DefectRecord {
 	String newJiraId;
 	String comments;
 	String source;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	LocalDateTime updateDt;
 
 	public String getSource() {
 		return source;
@@ -81,7 +87,7 @@ public class DefectRecord {
 
 	@PersistenceConstructor
 	public DefectRecord(long id, String track, String newJiraId, String comments, String summary, String applicableToIE,
-			String key) {
+			String key,@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime updateDt) {
 		super();
 		this.id = id;
 		this.track = track;
@@ -90,6 +96,7 @@ public class DefectRecord {
 		this.applicableToIE = applicableToIE;
 		this.key = key;
 		this.summary = summary;
+		this.updateDt = updateDt;
 	}
 
 	public String getApplicableToIE() {
@@ -102,6 +109,14 @@ public class DefectRecord {
 
 	public static String getSequenceName() {
 		return SEQUENCE_NAME;
+	}
+	
+	public LocalDateTime getUpdateDt() {
+		return updateDt;
+	}
+
+	public void setUpdateDt(LocalDateTime updateDt) {
+		this.updateDt = updateDt;
 	}
 
 }
