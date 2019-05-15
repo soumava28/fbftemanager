@@ -84,7 +84,7 @@ public class DefectLoaderController {
 		LOG.log(Level.INFO, "Updating defect dump");
 		boolean isDataUpdated = false;
 		isDataUpdated = service.updateRecords(Stream.of(records).collect(Collectors.toList()));
-		List<DefectRecord> defectList = defectClient.fetchDefectDump("Meds");
+		/*List<DefectRecord> defectList = defectClient.fetchDefectDump("Meds");*/
 		return isDataUpdated;
 
 	}

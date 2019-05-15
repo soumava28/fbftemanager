@@ -9,8 +9,6 @@ export class DefectrecorderService {
     constructor(private client: HttpClient) { }
 
     updateData(defect: any) {
-        console.log('----------->');
-        console.log(defect);
         return this.client.put(this.postUrl, defect).subscribe();
     }
 }

@@ -28,12 +28,18 @@ export class DefectretrieverCmpComponent implements OnInit {
 
     editData(defect) {
         console.log(defect);
-        this.editDialog.open(EditdilalogcmpComponent, {
+      let isSaved = this.editDialog.open(EditdilalogcmpComponent, {
             data: {
+                dataSource : this.dataSource,
                 defect,
                 buttonText: {
                     submit: 'Submit'
                 }
+            }
+        });
+        isSaved.afterClosed().subscribe(result => {
+            if (result) {
+                this.searchData();
             }
         });
     }
@@ -42,7 +48,6 @@ export class DefectretrieverCmpComponent implements OnInit {
         this.dataSource = this.defectFetch.getDataInArrayFormat(this.defectsearchModel);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-
     }
 
 
