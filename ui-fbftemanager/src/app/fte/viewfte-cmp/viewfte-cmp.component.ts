@@ -57,7 +57,7 @@ export class ViewfteCmpComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log('Success!', data);
-                    this.okDialogue.open(OkdialogcmpComponent, {
+              let deleteDone =  this.okDialogue.open(OkdialogcmpComponent, {
                         data: {
                             message: 'Deleted Successfully!',
                             buttonText: {
@@ -66,6 +66,11 @@ export class ViewfteCmpComponent implements OnInit {
                             }
                         }
 
+                    });
+                    deleteDone.afterClosed().subscribe(result => {
+                        if (result) {
+                            this.searchData();
+                        }
                     });
                 },
                 error => {
@@ -81,7 +86,7 @@ export class ViewfteCmpComponent implements OnInit {
                     });
                 }
             );
-        this.searchData();
+        
     }
 }
 

@@ -2,7 +2,13 @@ package com.deloitte.defectLoader.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -82,11 +88,22 @@ public class DefectLoaderController {
 	@RequestMapping(path = "/updateDefectDump", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public boolean updateDefects(@RequestBody DefectRecord records) {
 		LOG.log(Level.INFO, "Updating defect dump");
-		boolean isDataUpdated = false;
-		isDataUpdated = service.updateRecords(Stream.of(records).collect(Collectors.toList()));
-		/*List<DefectRecord> defectList = defectClient.fetchDefectDump("Meds");*/
-		return isDataUpdated;
-
+		  Boolean result = false;
+		  ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(10);
+		  Callable<Boolean> callableTask = () -> {
+			  return Boolean.valueOf(service.
+					  updateRecords(Stream.of(records).
+							  collect(Collectors.toList())));
+			};
+			Future<Boolean> future = executor.submit(callableTask);
+			try {
+			    if (future.isDone()) {
+			        result = future.get();
+			    }
+			} catch (ExecutionException | InterruptedException e) {
+			    e.printStackTrace();
+			}
+		return result;
 	}
 
 }
