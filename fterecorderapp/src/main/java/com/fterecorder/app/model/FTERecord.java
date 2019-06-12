@@ -1,6 +1,8 @@
 package com.fterecorder.app.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
@@ -8,8 +10,9 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
+
 @Document(collection = "FTERecord")
-public class FTERecord {
+public class FTERecord implements Serializable {
 
 	@Transient
 	public static final String SEQUENCE_NAME = "fterecord_seq";

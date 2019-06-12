@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditdilalogcmpComponent } from './dialogs/editdilalogcmp/editdilalogcmp.component';
 import { FormsModule } from '@angular/forms';
+import { EditftedilougeComponent } from './dialogs/editftedilouge/editftedilouge.component';
 
 
 
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
         FooterComponent,
         LoginCmpComponent,
         EditdilalogcmpComponent,
+        EditftedilougeComponent
     ],
     imports: [
         BrowserModule,

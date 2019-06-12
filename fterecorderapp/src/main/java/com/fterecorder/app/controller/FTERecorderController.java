@@ -1,6 +1,7 @@
 package com.fterecorder.app.controller;
 
 import java.util.Arrays;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.deloitte.defectLoader.model.DefectRecord;
 import com.fterecorder.app.model.FTERecord;
 import com.fterecorder.app.service.FTERecorderService;
 
@@ -60,7 +60,7 @@ public class FTERecorderController {
 	}
 	
 	@RequestMapping(path = "/updateRecord", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public boolean updateRecord(@RequestBody FTERecord record) {
+	public boolean updateDefects(@RequestBody FTERecord record) {
 		LOG.log(Level.INFO, "Updating FTE record");
 		boolean isDataUpdated = false;
 		isDataUpdated = service.updateRecords(record);

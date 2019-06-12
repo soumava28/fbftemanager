@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FteRecordClientModel } from 'src/app/client-models/fteclientmodels/fterecordclientmodel';
 
 @Injectable({
@@ -18,5 +18,8 @@ export class FterecorderclientsvcService {
     getFteCount(track: string) {
         return this.client.get(this.getFteCountUrl + track);
     }
-
+    updateFteData(record : FteRecordClientModel){
+        console.log(record);
+        return this.client.put(this.postUrl + 'updateRecord',  record).subscribe();
+    }
 }

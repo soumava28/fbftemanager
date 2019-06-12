@@ -1,0 +1,108 @@
+<table>
+   <tr >
+      <td colspan="2" align="center" > <label>Track</label> </td>
+      <td colspan="2" align="center" >  <select id="track" name="track" [(ngModel)]="editData.track" disabled>
+    <option value="BM">Benefit Managment</option>
+                                <option value="ARDC">ARDC</option>
+                                <option value="ADMIN">Admin</option>
+                                <option value="CO">Correspondence</option>
+                                <option value="IN">Interfaces</option>
+                                <option value="E&T">Employment & Training</option>
+                                <option value="Reports">Reports</option>
+                                <option value="ED">Eligibility</option>
+                                <option value="EA">EA</option>
+</select> </td>
+</tr>
+<tr><td><label>Week Start Date : </label> </td><td> {{editData.weekStDt | date}}</td> <br>
+    <td><label>Week End Date : </label> </td><td> {{editData.weekEdDt | date}}</td></tr>
+<tr>
+        <td><label>Total FTE : </label></td>
+        <td>
+            <input type="number"  id="ftesPerRosterCount"
+                placeholder=""
+                [(ngModel)]="editData.ftesPerRosterCount" disabled /></td>
+<br>
+        <td><label>Total Pending Defects : </label></td>
+        <td>
+            <input type="number" id="defectCount" placeholder="" [(ngModel)]="editData.defectCount"/></td>
+</tr>
+<tr>
+        <td><label>Total Workable Defects : </label></td>
+        <td>
+            <input type="number"  id="workableDefectsCount"
+                placeholder="" 
+                [(ngModel)]="editData.workableDefectsCount" /></td>
+<br>
+        <td><label>FTE for Defects : </label></td>
+        <td>
+            <input type="number"  id="defectFteCount" placeholder=""
+            [(ngModel)]="editData.defectFteCount" /></td>
+</tr>
+<tr>
+        <td><label>FTEs for Widgets : </label></td>
+        <td>
+            <input type="number"  id="widgetCount" placeholder=""
+            [(ngModel)]="editData.widgetCount"
+             /></td>
+             <br>
+<td><label>FTEs Loaned : </label></td>
+<td>
+    <input type="number"  id="ftesLoanedCount" placeholder=""
+        [(ngModel)]="editData.ftesLoanedCount"
+     /></td>
+</tr>
+<tr>
+        <td><label>PTOs : </label></td>
+        <td>
+            <input type="number"  id="ptoCount" placeholder=""
+            [(ngModel)]="editData.ptoCount"
+         /></td>
+         <br>
+        <td><label>FTEs Borrowed : </label></td>
+        <td>
+            <input type="number" id="ftesBorrowedCount"
+                placeholder="" [(ngModel)]="editData.ftesBorrowedCount"
+        /></td>
+</tr>
+<tr>
+        <td><label>FTEs for Perf Tasks : </label></td>
+        <td><input type="number"  id="ftesForPerformanceCount"
+                placeholder="" 
+                [(ngModel)]="editData.ftesForPerformanceCount" /></td>
+                <br>
+        <td><label>FTEs for UAT Scenario Execution : </label></td>
+        <td><input type="number" 
+                id="ftesForExtendedScenarioExecCount" placeholder=""
+                [(ngModel)]="editData.ftesForExtendedScenarioExecCount"
+              />
+        </td>
+</tr>
+<tr>
+        <td><label>Meds Defect Analysis : </label></td>
+        <td><input type="number"  id="medsDefAnalysisCount"
+                placeholder=""
+                [(ngModel)]="editData.medsDefAnalysisCount"
+              /></td>
+              <br>
+        <td><label>ND Defect Analysis : </label></td>
+        <td>
+            <input type="number"  id="ndDefectAnalysis" placeholder=""
+               [(ngModel)]="editData.ndDefectAnalysis"
+                /></td>
+</tr>
+<tr>
+        <td><label>Excess FTEs : </label></td>
+        <td>
+            <input type="number" id="excessFteCount" placeholder=""
+              [(ngModel)]="editData.excessFteCount"
+              /></td>
+</tr>
+
+
+</table>
+<textarea id="note"  placeholder="Note" [(ngModel)]="editData.note"
+style="width: 100%"></textarea>
+
+
+    <input type = "button" mat-raised-button color="primary"  (click)="onConfirmClick(editData)" value = "Submit" tabindex="1">
+

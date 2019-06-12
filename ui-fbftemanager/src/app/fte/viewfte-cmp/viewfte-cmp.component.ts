@@ -5,6 +5,7 @@ import * as XLSX from 'xlsx';
 import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { FtedeleteService } from 'src/app/client-services/ftedeleteservice/ftedelete.service';
 import { OkdialogcmpComponent } from 'src/app/dialogs/okdialogcmp/okdialogcmp.component';
+import { EditftedilougeComponent } from 'src/app/dialogs/editftedilouge/editftedilouge.component';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class ViewfteCmpComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
     public displayedColumns: string[] = ['track', 'weekStDt', 'weekEdDt', 'ftesPerRosterCount', 'defectCount', 'workableDefectsCount',
         'defectFteCount', 'widgetCount', 'ftesLoanedCount', 'ptoCount', 'ftesBorrowedCount', 'ftesForPerformanceCount',
-        'ftesForExtendedScenarioExecCount', 'medsDefAnalysisCount', 'excessFteCount', 'note', 'delete'];
+        'ftesForExtendedScenarioExecCount', 'medsDefAnalysisCount', 'excessFteCount', 'note', 'edit', 'delete'];
     public dataSource = new MatTableDataSource();
 
 
@@ -83,5 +84,24 @@ export class ViewfteCmpComponent implements OnInit {
             );
         this.searchData();
     }
+
+    editData(ftedate){
+        console.log(ftedate);
+        let isSaved = this.okDialogue.open(EditftedilougeComponent, {
+              data: {
+                  dataSource : this.dataSource,
+                  ftedate,
+                  buttonText: {
+                      submit: 'Submit'
+                  }
+              }
+          });
+          isSaved.afterClosed().subscribe(result => {
+              if (result) {
+                  this.searchData();
+              }
+          });
+    }
+
 }
 
